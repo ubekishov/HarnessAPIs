@@ -1,0 +1,41 @@
+query
+{
+  execution(executionId: "<EXECUTIONID_FROM_HARNESS>") {
+    application {
+      id
+      name
+    }
+    cause {
+      ... on ExecutedAlongPipeline {
+        execution {
+          id
+        }
+      }
+      ... on ExecutedByUser {
+        user {
+          name
+          email
+          isEmailVerified
+        }
+      }
+      ... on ExecutedByTrigger {
+        trigger {
+          id
+          name
+        }
+      }
+    }
+    ... on PipelineExecution {
+      pipeline {
+        id
+        name
+      }
+      memberExecutions {
+        nodes {
+          id
+        }
+      }
+    }
+  }
+}
+
